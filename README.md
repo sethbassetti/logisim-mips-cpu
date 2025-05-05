@@ -85,7 +85,8 @@ When you load the library in Logisim (Project → Load Library → JAR Library�
 
 ## Example
 This GIF shows an example of the screen being used to display a GIF of a moving cat.
-![cat](cat.gif)
+![cat](https://github.com/user-attachments/assets/7d860586-4b69-40f1-98b8-323aefd67e3a)
+
 
 ## Author
 
