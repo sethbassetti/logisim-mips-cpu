@@ -23,24 +23,65 @@ Open Logisim and load the jar file from the Project -> Load Library -> JAR Libra
 
 ## Components
 
-### Bitmap display
-The display follows the specification from nand2tetris. It is a 512 by 256 bitmap (that is, black and white only). It consist of 8192 16-pixel "segments".
+When you load the library in Logisim (Project → Load Library → JAR Library… and select the jar file in `target/`), you'll see **AggieMIPS Components** with:
 
-Here are the pins from left to right:
+### ALU
+* A (WIDTH-bit input) — first operand.
+* B (WIDTH-bit input) — second operand.
+* OP (3-bit input) — operation selector:
+  - `000`: AND
+  - `001`: OR
+  - `010`: ADD
+  - `100`: ANDN
+  - `101`: ORN
+  - `110`: SUB
+  - `111`: SLT
+* Zero (1-bit output) — high when result equals zero.
+* Out (WIDTH-bit output) — ALU result.
 
-* `RST` - Resets the display. Redraws it all in white. Works regardless of the state of `CLK` and `LOAD`.
-* `CLK` - The clock. The display is updated only when the clock changes state from 0 to 1.
-* `LOAD` - Idicates whether to update display (1) or not (0).
-* `ADDR` - 13-bit address of the 16-bit segment to be updated. Address 0 is the top-left segment, 1 is next to it and so on.
-* `IN` - 16-bit data in. The bits are copied over the specified segment. Bit 1 means foreground color (black), while 0 means background (white).
-* `OUT` - 16-bit data out. The data that is currently stored (and displayed) in the specified segment.
+### Inc16
+* In (WIDTH-bit input) — value to increment.
+* Out (WIDTH-bit output) — value plus one.
 
-If the `LOAD` is 1 when the `CLK` goes up, all the 16 pixels in the specified segment are updated at once.
+### Screen
+* I (16-bit input) — segment data.
+* A (13-bit input) — segment address.
+* L (1-bit input) — load enable.
+* CK (1-bit input) — clock (rising edge).
+* O (16-bit output) — data out.
+* Display (1-bit input) — render signal.
 
-`RST` works with priority. If it's 1, the display is cleared (all white) regardless of the state of the other pins.
+### RegisterFile
+* Read Register 1 (3-bit input)
+* Read Register 2 (3-bit input)
+* Write Register (3-bit input)
+* Write Data (16-bit input)
+* Write Enable (1-bit input)
+* Read Data 1 (16-bit output)
+* Read Data 2 (16-bit output)
+* Clock (1-bit input)
+* Reset (1-bit input)
 
-Here is how it looks: ![HACK display](https://github.com/itoshkov/logisimn2t/blob/master/HACK-display.png "HACK display")
+### Control
+* OpCode (4-bit input)
+* Funct (3-bit input)
+* bne, beq, j, jal, jr, MemtoReg, MemWrite, RegWrite, ALUSrc, RegDst (1-bit outputs)
+* ALUOp (3-bit output)
+
+### CPU
+* Instruction (16-bit input)
+* MemData (16-bit input)
+* Reset (1-bit input)
+* Clock (1-bit input)
+* MemWriteData (16-bit output)
+* MemAddress (15-bit output)
+* MemWrite (1-bit output)
+* PC (15-bit output)
+* Display (1-bit output)
+
+### Keyboard
+* KeyCode (16-bit output) — ASCII code of the pressed key (0 if none).
 
 ## Author
 
-Ivan Toshkov
+Seth Bassetti
