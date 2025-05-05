@@ -1,6 +1,6 @@
 # README
 
-[Logisim](http://www.cburch.com/logisim/index.html) components for implementing a HACK-like computer as described in the [From NAND to Tetris](http://nand2tetris.org/) course.
+[Logisim](http://www.cburch.com/logisim/index.html) components for implementing a 16-bit MIPS computer to be used in USU's CS2810 course.
 
 ## Dependencies
 The only external dependency is `logisim.jar`. Since it's not available in the maven repos we need to add it manually before the first build:
