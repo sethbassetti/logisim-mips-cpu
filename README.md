@@ -82,6 +82,11 @@ When you load the library in Logisim (Project → Load Library → JAR Library�
 ### Keyboard
 * KeyCode (16-bit output) — ASCII code of the pressed key (0 if none).
 
+
+## Example
+This GIF shows an example of the screen being used to display a GIF of a moving cat.
+![cat](https://github.com/user-attachments/assets/637eaf6b-615e-43dc-916c-1657936d92e8)
+
 ## Author
 
 Seth Bassetti
